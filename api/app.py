@@ -26,12 +26,12 @@ ext_to_language_map = {
 def get_metadata(skylink):
     response = requests.get(f"http://siasky.net/{skylink}")
 
-    metadata = json.loads(response.headers["Skynet-File-Metadata"])
+    metadata = json.loads(response.headers.get("skynet-file-metadata"))
     filename = metadata.get("filename", "")
     _, ext = os.path.splitext(filename)
     langauge = ext_to_language_map.get(ext)
 
-    return jsonify({"filename": filename or None, "language": langauge})
+    return jsonify({"filename": filename or None, "language": langauge, "content": response.text})
 
 
 if __name__ == "__main__":
