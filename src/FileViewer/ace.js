@@ -1,12 +1,24 @@
 import React from "react"
 
 import AceEditor from "react-ace"
+import "ace-builds/src-noconflict/theme-github"
 
-const Ace = props => {
+import "ace-builds/src-noconflict/mode-javascript"
+import "ace-builds/src-noconflict/mode-python"
+import "ace-builds/src-noconflict/mode-markdown"
+import "ace-builds/src-noconflict/mode-java"
+import "ace-builds/src-noconflict/mode-xml"
+import "ace-builds/src-noconflict/mode-json"
+import "ace-builds/src-noconflict/mode-golang"
+import "ace-builds/src-noconflict/mode-ruby"
+import "ace-builds/src-noconflict/mode-mysql"
+import "ace-builds/src-noconflict/mode-css"
+
+const Ace = ({ value, language }) => {
   return (
     <AceEditor
       placeholder="Placeholder Text"
-      mode="javascript"
+      mode={language}
       theme="github"
       name="blah2"
       fontSize={12}
@@ -14,9 +26,8 @@ const Ace = props => {
       showPrintMargin={false}
       showGutter={true}
       highlightActiveLine={false}
-      value={`function onLoad(editor) {
-  console.log("i've loaded");
-}`}
+      width={5000} // some arbitrarily large value
+      value={value || ""}
       setOptions={{
         enableBasicAutocompletion: false,
         enableLiveAutocompletion: false,

@@ -9,7 +9,7 @@ import Divider from "@material-ui/core/Divider"
 import Grid from "@material-ui/core/Grid"
 import grey from "@material-ui/core/colors/grey"
 
-export default function Header() {
+export default function Header({ value, contentLength, filename }) {
   const metadataDivider = {
     height: "20px",
     marginTop: "7px",
@@ -35,11 +35,11 @@ export default function Header() {
       <Grid container>
         <Grid item xs={6}>
           <List style={metadataContainer}>
-            <ListItem>Executable File</ListItem>
+            <ListItem>{filename}</ListItem>
             <Divider orientation="vertical" flexItem style={metadataDivider} />
-            <ListItem>152 lines</ListItem>
+            <ListItem>{contentLength} line(s)</ListItem>
             <Divider orientation="vertical" flexItem style={metadataDivider} />
-            <ListItem>5.06 KB</ListItem>
+            <ListItem>{new Blob([value]).size} bytes</ListItem>
           </List>
         </Grid>
         <Grid item xs={5} />

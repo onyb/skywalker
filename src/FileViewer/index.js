@@ -16,7 +16,12 @@ const useStyles = makeStyles({
   },
 })
 
-export default function OutlinedCard() {
+export default function OutlinedCard({
+  value,
+  contentLength,
+  language,
+  filename,
+}) {
   const classes = useStyles()
   const headerCardContent = {
     backgroundColor: "#f6f8fa",
@@ -25,17 +30,21 @@ export default function OutlinedCard() {
   }
 
   const aceCardContent = {
-    padding: 0
+    padding: 0,
   }
 
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent style={headerCardContent}>
-        <Header />
+        <Header
+          value={value}
+          contentLength={contentLength}
+          filename={filename}
+        />
       </CardContent>
       <Divider />
       <CardContent style={aceCardContent}>
-        <Ace />
+        <Ace value={value} language={language} />
       </CardContent>
     </Card>
   )
