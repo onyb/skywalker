@@ -32,9 +32,9 @@ def get_metadata(skylink):
     metadata = json.loads(response.headers.get("skynet-file-metadata"))
     filename = metadata.get("filename", "")
     _, ext = os.path.splitext(filename)
-    langauge = ext_to_language_map.get(ext)
+    language = ext_to_language_map.get(ext)
 
-    return jsonify({"filename": filename or None, "language": langauge, "content": response.text})
+    return jsonify({"filename": filename or None, "language": language, "content": response.text})
 
 
 if __name__ == "__main__":
