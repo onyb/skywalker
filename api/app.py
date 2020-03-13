@@ -23,6 +23,10 @@ ext_to_ace_mode_map = {
 }
 
 
+def get_content_length(metadata: dict, filename: str) -> int:
+    return metadata["subfiles"][filename]["len"]
+
+
 @app.route("/<skylink>/metadata")
 def get_metadata(skylink):
     response = requests.get(
@@ -36,8 +40,10 @@ def get_metadata(skylink):
     _, ext = os.path.splitext(filename)
     mode = ext_to_ace_mode_map.get(ext)
 
+    content_length = filename and get_content_length(metadata, filename)
+
     return jsonify(
-        {"filename": filename or None, "mode": mode, "length": metadata["len"]}
+        {"filename": filename or None, "mode": mode, "length": content_length or 0}
     )
 
 
